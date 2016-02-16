@@ -89,10 +89,13 @@ h1{
 
     .feed{
       width:100%;
+      margin: 0;
     }
     .card{
       width:100%;
       font-size: 20px;
+      margin: 0;
+      margin-bottom: 5px;
     }
 
 }
