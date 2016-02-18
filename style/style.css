@@ -1,31 +1,29 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 html, body{
   font-family: 'Open Sans', sans-serif;
-  background-color: #ECEFF1;
   padding: 0;
   margin:0;
   height: 100%;
   width: 100%;
 }
+body{
+    /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
+    background-size: cover;
+    background-color: #E3F2FD;
+}
 h1{
   margin:auto;
   margin-top:0;
 }
-.background{
-  background-image: url('https://i.imgur.com/d59jgJM.jpg');
-  height:100%;
-  width: 100%;
-  top:0;
-  left:0;
-  right:0;
-  bottom: 0;
-  position: fixed;
-  z-index: -1;
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
+
+.arrow{
+  color: rgb(44, 95, 195);
+  cursor:pointer;
+  float:right;
+}
+
+.details{
+
 }
 .title-image{
   width: 100%;
@@ -36,6 +34,65 @@ h1{
   vertical-align: middle;
   overflow: hidden;
   padding: 0;
+}
+
+.title-carousel{
+  height: 100%;
+  text-align:center;
+  vertical-align: middle;
+  overflow: hidden;
+  padding: 0;
+}
+.carousel{
+  height:100%;
+}
+.carousel-img{
+  height: 100%;
+  width: 100%;
+}
+.slide{
+  display: table-cell;
+  height:100%;
+}
+.slide span{
+  top: 100px;
+  left:100px;
+  position: absolute;
+  color: white;
+  float:left;
+}
+.nav-bar {
+    height: 7%;
+    width: 100%;
+    z-index: 1;
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    /* Adds shadow to the bottom of the bar */
+-webkit-box-shadow: 0px 0px 8px 0px #000000;
+-moz-box-shadow: 0px 0px 8px 0px #000000;
+box-shadow: 0px 0px 8px 0px #000000;
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 15pt;
+    color: white;
+    font-weight: bold;
+    margin-top: 0;
+
+}
+.nav-bar-head {
+    width: 50%;
+    height: 100%;
+    padding: 0.5% 2%;
+    float: left;
+}
+.nav-bar-tabs {
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+.tabs {
+    float: right;
+    padding: 1% 2%;
+    height: 100%;
 }
 .title-image p{
   vertical-align: middle;
@@ -67,32 +124,37 @@ h1{
   width:70%;
   height:100%;
   margin:auto;
-  margin-top: 1%;
+  margin-top: 5%;
+
 }
 .card{
   margin:auto;
   margin-bottom: 1%;
   background-color: white;
-  padding: 1%;
+  padding:0;
+  padding-bottom: 1%;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .card img{
   width:100%;
+  margin:0px;
+
 }
-
-@media screen
-  (orientation: portrait) {
-
-    .feed{
-      width:100%;
-      margin: 0;
-    }
-    .card{
-      width:100%;
-      font-size: 20px;
-      margin: 0;
-      margin-bottom: 5px;
-    }
-
+.card-text{
+  margin: 1%;
+}
+.details{
+  padding:1%;
+}
+.weather{
+color: #FBC02D;
+font-size:30px;
+}
+.price{
+color: #388E3C;
+font-size:30px;
+}
+.card-title{
+  margin: 1%;
 }

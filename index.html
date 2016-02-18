@@ -1,51 +1,73 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="webApp">
+<html lang="en" >
 
 <!--[if IE]>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 <![endif]-->
 <head>
   <meta charset="UTF-8" />
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
   <script src="js/frameworks/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
   <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
+  <script src="js/frameworks/angular-animate.min.js"></script>
+
   <script src="js/app.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
   <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="style/style.css" type="text/css" />
 
-
   <title>Holiday Recommender</title>
 
 </head>
 
 
-<body ng-controller="FeedCtrl">
-  <img  class="background"/>
-      <div class="title-image">
-    <p><h1>Holiday Recommender</h1> <br/>
-      Some stuff <br/>
-      some more stuff
-    </p>
-  </div>
-  <div class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-     <a class="navbar-brand" href="#">Holiday Recommender</a>
-   </div>
-  </div>
+<body ng-controller="FeedCtrl" ng-app="webApp">
+  <div class="nav-bar">
+      <div class="nav-bar-head">
+          HOLIDAY RECOMMENDER
+      </div>
+      <div class="nav-bar-tabs">
 
+
+        <div class="tabs">Contact Us</div>
+        <div class="tabs">Your Story</div>
+        <div class="tabs">Experiences</div>
+        <div class="tabs">About</div>
+
+
+
+      </div>
+
+    </div>
+  <div class="title-carousel">
+
+  <uib-carousel interval="2000" no-wrap="false" >
+    <uib-slide ng-repeat="hol in holidays" active="hol.active" class="slide">
+      <span><h1>{{hol.Location}}</h1></span>
+            <img ng-src="{{hol.Images[0]}}" style="margin:auto;" class="carousel-img"/>
+          </uib-slide>
+  </uib-carousel>
+
+</div>
 
   <div class="feed">
   <div class="card" ng-repeat="hol in holidays">
     <img class="card-img-top" src="{{hol.Images[0]}}" />
-    <div class="card-block">
+    <div class="card-block" ng-click="hol.showing = !hol.showing">
       <h3 class="card-title">{{hol.Location}}</h3>
       <p class="card-text">
          Weather: {{hol.Weather}} <br/>
          Price: {{hol.Price}} <br/>
          {{hol.Description}}
        </p>
+    </div>
+    <div uib-collapse="!hol.showing" class="details">
+      <p>
+        Price: <uib-rating max="5" ng-model="hol.Price" readonly="true" class="price"></uib-rating><br/>
+        Weather: <uib-rating max="5" ng-model="hol.Weather" readonly="true" class="weather"></uib-rating><br/>
+      </p>
     </div>
   </div>
   </div>
