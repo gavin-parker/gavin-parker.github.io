@@ -15,7 +15,14 @@ h1{
   margin:auto;
   margin-top:0;
 }
-
+a {
+    color: white;
+    transition: all .5s;
+}
+a:hover {
+    color: orangered;
+    text-decoration: none;
+}
 .arrow{
   color: rgb(44, 95, 195);
   cursor:pointer;
@@ -23,36 +30,167 @@ h1{
 }
 
 .details{
-
+  margin:0;
+  padding: 0;
 }
+.review{
+  background-color: #FAFAFA;
+  margin:0;
+  padding:0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #F5F5F5;
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
 .title-image{
   width: 100%;
   height: 100%;
   background-color: rgb(58, 155, 172);
   text-align:center;
-  background-image: url('https://i.imgur.com/d59jgJM.jpg');
+  /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
   vertical-align: middle;
   overflow: hidden;
   padding: 0;
 }
 
-.title-carousel{
+#myCarousel {
+    width: 100%;
+    height: 100%;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 50pt;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.carousel-inner, .item {
+     width: 100%;
+    height: 100%;
+}
+.item {
+    padding-top: 14%;
+    background-size: 100%;
+}
+#item1 {
+    background: url(../img/bali.png);
+    background-size:cover;
+}
+#item2 {
+    background: url(../img/alps.jpg);
+    background-size: cover;
+
+}
+#item3 {
+    background: url(../img/meadows.png);
+    background-size: cover;
+}
+#item4 {
+    background: url(../img/aurora.jpg);
+    background-size: cover;
+}
+#diaries {
+     width: 100%;
+    height: 100%;
+
+}
+.diary1, .diary2, .diary3, .diary4 {
+    width: 50%;
+    height: 50%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 4%;
+    font-family: 'Montserrat';
+    font-size: 20pt;
+    color: white;
+    float: left;
+
+}
+.diary1 {
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/couple.png);
+    background-size: 100%;
+     -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+.diary1:hover {
+    background-size: 100%;
+}
+#diary1-text {
+    display: none;
+}
+#diary2-text {
+    display: none;
+}
+#diary3-text {
+    display: none;
+}
+#diary4-text {
+    display: none;
+}
+.diary2 {
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/friends.png);
+    background-size: 100%;
+    text-align: right;
+}
+.diary3 {
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/amy.png) no-repeat;
+    background-size: 100%;
+
+}
+.diary4 {
+     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/ibiza.png);
+    background-size: 100%;
+    text-align: right;
+}
+.my-story {
+    width: 100%;
+    height: 100%;
+    background: url(../img/diary.png);
+    background-size: 100%;
+    font-family: 'Montserrat';
+    font-size: 50pt;
+    color: white;
+
+
+
+}
+.my-story-title {
+  padding-left: 4%;
+  padding-top: 4%;
+  float: left;
+  width: 50%;
   height: 100%;
-  text-align:center;
-  vertical-align: middle;
-  overflow: hidden;
-  padding: 0;
+  font-weight: bold;
 }
-.carousel{
-  height:100%;
+.story-form {
+    font-size: 17pt;
+    padding-top: 6%;
+    text-align: center;
+    float: right;
+    width: 50%;
+    height: 100%;
 }
-.carousel-img{
-  height: 100%;
-  width: 100%;
+.form-components {
+    border: 5px;
+    border-style: solid;
+    border-color: white;
+    color: black;
+    background: white;
 }
-.slide{
-  display: table-cell;
-  height:100%;
+.submit {
+    border-left: 50px;
+    border-right: 50px;
+    border-style: solid;
+    border-color: white;
+    transition: all .4s;
+}
+.submit:hover {
+    background: forestgreen;
+    border-color: forestgreen;
+    color: white;
 }
 .slide span{
   top: 100px;
@@ -62,20 +200,21 @@ h1{
   float:left;
 }
 .nav-bar {
-    height: 7%;
+    height: 6%;
     width: 100%;
     z-index: 1;
     position: fixed;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
     /* Adds shadow to the bottom of the bar */
 -webkit-box-shadow: 0px 0px 8px 0px #000000;
 -moz-box-shadow: 0px 0px 8px 0px #000000;
 box-shadow: 0px 0px 8px 0px #000000;
     font-family: 'Open Sans' , sans-serif;
-    font-size: 15pt;
+    font-size: 13pt;
     color: white;
     font-weight: bold;
     margin-top: 0;
+    -webkit-backface-visibility: hidden;
 
 }
 .nav-bar-head {
@@ -83,6 +222,7 @@ box-shadow: 0px 0px 8px 0px #000000;
     height: 100%;
     padding: 0.5% 2%;
     float: left;
+    color: darkorange;
 }
 .nav-bar-tabs {
     width: 50%;
@@ -124,28 +264,60 @@ box-shadow: 0px 0px 8px 0px #000000;
   width:70%;
   height:100%;
   margin:auto;
+  padding-top: 3%;
+  margin-top: 0;
+}
+.sidebar{
+  width: 10%;
+  height: 30%;
+  margin: none;
+  z-index: 2;
+  margin-left: 1%;
   margin-top: 5%;
-
+  position: fixed;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .card{
   margin:auto;
   margin-bottom: 1%;
   background-color: white;
   padding:0;
-  padding-bottom: 1%;
+  padding: 0;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
 }
 .card img{
   width:100%;
   margin:0px;
+  cursor: pointer;
 
 }
+.details p{
+  margin-left: 42px;
+}
+.card .avatar{
+  width:32px;
+  height:32px;
+  border-radius: 50%;
+  display: inline-block;
+  float: left;
+  margin-right: 1%;
+  margin-left: 2px;
+}
+.details h4{
+  display: inline-block;
+  margin-left: 2px;
+}
 .card-text{
-  margin: 1%;
+  margin: 0;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 .details{
-  padding:1%;
+  padding:0;
 }
 .weather{
 color: #FBC02D;
