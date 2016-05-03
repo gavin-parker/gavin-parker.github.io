@@ -8,7 +8,32 @@ var http = require('http');
 var https = require('https');
 var fs = require('fs');
 var path = require('path');
+var url = require( "url" );
+var imgapi = require("gettyimages-api");
+var queryString = require( "querystring" );
+var sql = require("sqlite3");
+var events = require("events");
+var eventEmitter = new events.EventEmitter();
+sql.verbose();
+var exists = fs.existsSync("test.db");
+var db = new sql.Database("test.db");
+db.serialize(startup);
+var insertHol = db.prepare("insert into hols values (?, ?, ?, ?, ?, ?,?,?,?,?)");
+var insertComment = db.prepare("insert into comments values (?, ?, ?, ?)");
+var updateImage = db.prepare("update hols set image = ? where destination = ?");
+var addRating = db.prepare("update hols set rating = rating + ? where id= ?");
+function startup(){
+  if(!exists){
+  db.run("create table hols (id integer primary key, name text, destination text, country text, email text, description text, image text, rating int, weather text, price text)", err);
+  db.run("create table comments (id integer primary key, name text, contents text,hol integer)",err);
+}
+}
 
+function err(e){
+  if(e){
+  console.log(e);
+}
+}
 // The default port numbers are the standard ones [80,443] for convenience.
 // Change them to e.g. [8080,8443] to avoid privilege or clash problems.
 var ports = [80, 443];
@@ -99,6 +124,16 @@ function fail(response, code) {
 // browser to get relative links right).
 function serve(request, response) {
     var file = request.url;
+    if(request.method == "POST"){
+      handlePOST(request);
+      response.end();
+      return;
+    }
+    if(request.method == "GET"){
+      if(handleGET(request, response)){
+        return;
+      }
+    }
     if (file == '/') return redirect(response, prefix + '/');
     if (! starts(file,prefix)) return fail(response, NotFound);
     file = file.substring(prefix.length);
@@ -117,6 +152,161 @@ function serve(request, response) {
         succeed(response, type, content);
     }
 }
+
+//handles incoming POST requests
+function handlePOST(request){
+  console.log(request.url);
+  var data = url.parse(request.url);
+  var query = queryString.parse(data.query);
+  console.log(query);
+  console.log(data.pathname);
+  switch(data.pathname){
+    case "/comment":
+    console.log("comment request");
+    submitComment(query.text, query.name, query.locID);
+    break;
+    case "/post":
+    console.log("post request");
+    submitHoliday(query);
+    break;
+    case "/rating":
+    console.log("increment rating of" +  query.holid);
+    if(query.up){
+    addRating.run(1,query.holid);
+  }else{
+    addRating.run(-1,query.holid);
+  }
+    break;
+  }
+}
+
+function handleGET(request, response){
+  var data = url.parse(request.url);
+  var query = queryString.parse(data.query);
+  //console.log(query);
+  if(query.query == "holidays"){
+    getHolidays(query,request,response);
+    return true;
+  }
+  return false;
+}
+//get each holiday and attatch comments before writing out response
+function getHolidays(query,request,response)
+{
+  var hols = [];
+  var completed = 0;
+  var holnum = 0;
+  var emitter = new events.EventEmitter();
+  emitter.on('comments', function(){
+    completed++;
+    //console.log("completed:" + completed + " holnum:" + holnum);
+    if(completed == holnum){
+      //console.log("complete");
+      //console.log(hols);
+      response.write(JSON.stringify(hols));
+      response.end();
+    }
+  });
+
+  db.each("select * from hols", function(err,row){
+    //console.log("getting comments for" + row.id);
+    //hols.push(row);
+    db.all("select * from comments where hol = ?",row.id, function(err,rows){
+      row.comments = [];
+      //console.log(rows);
+      row.comments = rows;
+      hols.push(row);
+      emitter.emit('comments');
+    });
+  }, function(err,rows){
+    holnum = rows;
+    //console.log("hols: " + holnum);
+  });
+}
+function saveImage(imageURL, location){
+  var filename = "./img/" + location + ".jpg";
+  var file = fs.createWriteStream(filename);
+  var request = https.get(imageURL,function(response){
+    response.pipe(file);
+    updateImage.run(filename,location);
+  });
+}
+
+function getImage(location,country){
+  https.get({
+    host : 'pixabay.com',
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + location + '&image_type=photo&orientation=horizontal&category=travel'
+  }, function(response){
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+            // Data reception is done, do whatever with it!
+            var data = JSON.parse(body);
+            console.log(body);
+            //console.log(data);
+            if(data.hits[0] !== null){
+            var imageURL = data.hits[0].webformatURL;
+
+            console.log(imageURL);
+            updateImage.run(imageURL,location);
+            saveImage(imageURL,location);
+          }else{
+            getBackupImage(location,country);
+          }
+        });
+      });
+}
+function getBackupImage(location,country){
+  https.get({
+    host : 'pixabay.com',
+    path: '/api/?key=2345037-9be9e6c6429baad131d002b79&q=' + country + '&image_type=photo&orientation=horizontal&category=travel'
+  }, function(response){
+      var body = '';
+      response.on('data', function(d) {
+          body += d;
+      });
+      response.on('end', function() {
+            // Data reception is done, do whatever with it!
+            var data = JSON.parse(body);
+            console.log(body);
+            //console.log(data);
+            if(data.hits[0] !== null){
+            var imageURL = data.hits[0].webformatURL;
+            console.log(imageURL);
+            updateImage.run(imageURL,location);
+          }
+        });
+      });
+}
+
+//writes a holiday to the database
+function submitHoliday(story){
+  console.log(story.name);
+  console.log(story.dest);
+  console.log(story.email);
+  console.log(story.number);
+  console.log(story.desc);
+  console.log(story.country);
+
+  if(story.name === "" || story.dest === "" || story.email === "" || story.desc === ""){
+    return;
+  }
+  try{
+  var image = "image";
+  insertHol.run(null,story.name, story.dest,story.country, story.email, story.desc, 'image',0,story.weather,story.price);
+  getImage(story.dest);
+}catch(err){
+}
+}
+
+//handles comment submission
+function submitComment(comment, username , locID ){
+  insertComment.run(null, username, comment, locID);
+  return;
+}
+
 
 // Find the content type (MIME type) to respond with.
 // Content negotiation is used for XHTML delivery to new/old browsers.
@@ -218,6 +408,21 @@ var cert =
     "dgxV4FeBF6hW2pnchveJK4Kh56ShKF8SK1P8wiqHqV04O9p1OrkB6GxlIO37eq1U\n" +
     "xQMaMCUsZCWPP3ujKAVL7m3HY2FQ7EJBVoqvSvqSaHfnhog3WpgdyMw=\n" +
     "-----END CERTIFICATE-----\n";
+
+
+function close(){
+  db.close();
+  console.log("closing nicely");
+  process.exit(2);
+}
+process.on('SIGINT', close);
+
+function done(){
+  insertHol.finalize();
+  insertComment.finalize();
+  db.close();
+  process.exit();
+}
 
 // Start everything going.
 start();

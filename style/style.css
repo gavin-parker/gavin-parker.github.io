@@ -9,11 +9,15 @@ html, body{
 body{
     /*background-image: url('https://i.imgur.com/d59jgJM.jpg');*/
     background-size: cover;
-    background-color: #E3F2FD;
+    background-color: #ECEFF1;
+    padding-top: 100px;
 }
 h1{
   margin:auto;
   margin-top:0;
+}
+.small-header{
+  padding-top:10px;
 }
 a {
     color: white;
@@ -23,12 +27,19 @@ a:hover {
     color: orangered;
     text-decoration: none;
 }
+col-md-4{
+  padding: 5px;
+}
+
 .arrow{
   color: rgb(44, 95, 195);
   cursor:pointer;
   float:right;
 }
-
+.small-icon{
+  height:40px;
+  margin-bottom: -10px;
+}
 .details{
   margin:0;
   padding: 0;
@@ -153,9 +164,6 @@ a:hover {
     font-family: 'Montserrat';
     font-size: 50pt;
     color: white;
-
-
-
 }
 .my-story-title {
   padding-left: 4%;
@@ -167,18 +175,25 @@ a:hover {
 }
 .story-form {
     font-size: 17pt;
-    padding-top: 6%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 5%;
+    margin-right: 5%;
     text-align: center;
     float: right;
-    width: 50%;
-    height: 100%;
-}
-.form-components {
-    border: 5px;
-    border-style: solid;
-    border-color: white;
+    width: 33%;
+    height: 66%;
     color: black;
-    background: white;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    z-index: 2;
+    line-height: 100%;
+}
+#country{
+  width:100%;
+  margin: auto;
 }
 .submit {
     border-left: 50px;
@@ -192,6 +207,15 @@ a:hover {
     border-color: forestgreen;
     color: white;
 }
+.postButton {
+  position: fixed;
+  float:right;
+  margin:auto;
+  left:90%;
+  bottom: 5%;
+  z-index: 1;
+}
+
 .slide span{
   top: 100px;
   left:100px;
@@ -278,6 +302,7 @@ box-shadow: 0px 0px 8px 0px #000000;
   background-color: white;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding:5px;
 }
 .card{
   margin:auto;
@@ -287,18 +312,21 @@ box-shadow: 0px 0px 8px 0px #000000;
   padding: 0;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  cursor: pointer;
 }
-.card img{
+.card-img{
   width:100%;
   margin:0px;
-  cursor: pointer;
-
+  max-height: 200px;
+  height:200px;
+  max-width: 300px;
+  object-fit: cover;
+  overflow: hidden;
 }
+
 .details p{
   margin-left: 42px;
 }
-.card .avatar{
+.avatar{
   width:32px;
   height:32px;
   border-radius: 50%;
@@ -329,4 +357,23 @@ font-size:30px;
 }
 .card-title{
   margin: 1%;
+}
+textarea{
+  min-width:100%;
+}
+.expand{
+background-color: #E0F7FA;
+color: #80DEEA;
+text-align: center;
+width:100%;
+cursor: pointer;
+}
+.heart{
+  color:#E0E0E0;
+  font-size: 150%;
+  float:right;
+}
+.heart:hover{
+  color: #F48FB1;
+  cursor: pointer;
 }
