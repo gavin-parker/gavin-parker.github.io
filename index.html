@@ -1,178 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" >
-<!--[if IE]>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-<![endif]-->
-<head>
-  <meta charset="UTF-8" />
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <script src="js/frameworks/angular.min.js"></script>
-  <script src="js/frameworks/angular-animate.min.js"></script>
-  <script src="js/frameworks/ui-bootstrap-tpls-1.1.2.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/frameworks/angular-scroll.js"></script>
-  <script src="js/frameworks/countrySelect.min.js"></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Gavin's Portfolio</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="./css/style.css" rel="stylesheet">
 
 
-  <script async src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </head>
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
-
-
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Serif|Fira+Sans|Montserrat' rel='stylesheet' type='text/css'>
-  <link href="style/bootstrap.css" rel='stylesheet' type='text/css'/>
-  <link rel="stylesheet" href="style/countrySelect.min.css" type="text/css" />
-  <link rel="stylesheet" href="style/style.css" type="text/css" />
-
-
-
-  <title>Holiday Recommender</title>
-
-</head>
-
-
-<body ng-app="webApp" class="small-header">
-
-  <div class="navbar navbar-default navbar-fixed-top">
-    <a class="navbar-brand" href="#">Holiday thingy</a>
-    <ul class="nav navbar-nav">
-      <li>
-        <a class="navbar-link" alink="white" href="feed.html">Top Destinations</a>
-      </li>
-      <li>
-        <a class="navbar-link" alink="white" href="#">Contact Us</a>
-      </li>
-      <li>
-        <a  class="navbar-link"alink="white" href="#my-story" du-smooth-scroll>Your Story</a>
-      </li>
-      <li>
-        <a  class="navbar-link"alink="white" href="#diaries" du-smooth-scroll>Diaries</a>
-      </li>
-      <li>
-        <a class="navbar-link" alink="white" href="#myCarousel" du-smooth-scroll>Home</a>
-      </li>
-    </ul>
-  </div>
-
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-
-    <!-- Wrapper for slides !-->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active" id="item1">
-
-        ENJOY SUNSET <br>IN BALI
-      </div>
-
-      <div class="item" id="item2">
-        EXPLORE<br/> THE ALPS
-      </div>
-
-      <div class="item" id="item3">
-        FEEL <br>THE FRESHNESS<br> OF GERMANY
-      </div>
-
-      <div class="item" id="item4">
-        CAMP UNDER<br/> NORTHERN LIGHTS
+  <body>
+    <div class="container-fluid">
+      <div class="row" id="title">
+        <h1>Gavin's Portfolio</h1>
       </div>
     </div>
+    <div class="container">
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <div id="diaries">
-    <div  class="diary1">
-      <div id="diary1-text">
-        "We found love in Thailand"
-        <br><font size="5pt" align="right">- John & Sophie</font>
-      </div>
-    </div>
-    <div id="diary2" class="diary2">
-      <div id="diary2-text">
-        "Best trip of my life !
-        <br>Thank you Holiday Recommender"
-        <br><font size="5pt" align="right">- Sam</font>
-      </div>
-    </div>
-    <div class="diary3">
-      <div id="diary3-text">
-        "I found inner peace in <br>New Zealand
-        <br><font size="5pt" align="right">- Amy</font>
-      </div>
-    </div>
-    <div class="diary4">
-      <div id="diary4-text">
-        "There's nothing like <br>partying in Ibiza
-        <br><font size="5pt" align="right">- Roxanne</font>
-      </div>
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-md-8" id="content">
+          <div class="article" href="#intro">
 
-  <div id="my-story" class="my-story" ng-controller="FormCtrl">
-    <div id="my-story-title" class="my-story-title">
-      SHARE <br> YOUR STORY
+          <h2>Intro</h2>
+          <p>
+            I am a Computer Science student at the University of Bristol. I am in my 2nd year, having achieved a 1st in my previous year.
+            I have experience working on business and software projects in teams from University and School.
+            I am looking for internship opportunities at home and abroad for the summers of 2016 and 2017, and I will be looking for graduate level employment in 2018.
+          </p>
+          <img src="./img/cropped-castle.png" class="img-responsive" alt="One of my unity projects"/>
+        </div>
+        <hr />
+        <div class="article" href="#cwp">
+
+          <h2>Cotswold Water Park App</h2>
+          <video class="img-responsive" src="http://gavin-parker.github.io/Cotswold-Water-Park/site/fastDemo1.mp4" controls></video>
+          <p>
+          Worked in a team to create a cross-platform app for a water park, including an interactive map, trip planning tools like events and favourites as well as bird watching features.
+          The app is Angular/Ionic based, and adheres to material design.
+          A beta version for android is available from the link below:
+          </p>
+          <a href="http://gavin-parker.github.io/Cotswold-Water-Park/">CWP App</a>
+        </div>
+        </div>
+        <div class="col-md-4" id="navigation" role="navigation">
+          <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active">
+              <a href="#intro">Cotswold Water Park App</a>
+            </li>
+            <li role="presentation">
+              <a href="">Town builder</a>
+            </li>
+            <li role="presentation">
+              <a href="">Scotland Yard</a>
+            </li>
+            <li role="presentation">
+              <a href="">Holiday Website</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div id="story-form" class="story-form">
-      <div class="form-horizontal">
-        <form name="storyForm" ng-show="{{!storyForm.$submitted}}" >
-          <input class="form-control" type="text" name="fname" ng-model="story.Name" placeholder="Your Name" required><br />
-          <input class="form-control" type="email" name="lname" ng-model="story.Email" placeholder="Email" required><br />
-          <input class="form-control" type="text" name="lname" ng-model="story.Destination" placeholder="Holiday City" required><br />
-          <input class="form-control" type="text" id="country" ng-model="story.Country" placeholder="Holiday Country" required><br /><br />
-          <select class="form-control" ng-model="story.Price">
-            <option value="">Please select a price</option>
-            <option value="1">Bargain</option>
-            <option value="2">Cheap</option>
-            <option value="3">Reasonable</option>
-            <option value="4">Expensive</option>
-            <option value="5">Extortionate</option>
-          </select><br />
-          <select class="form-control" ng-model="story.Weather">
-            <option value="">What was the weather like?</option>
-            <option value="1">Very Cold</option>
-            <option value="2">Cold</option>
-            <option value="3">Temperate</option>
-            <option value="4">Hot</option>
-            <option value="5">Very Hot</option>
-          </select><br />
-          <textarea class="form-control" rows="5" cols="20" placeholder="Your Experience" ng-model="story.Description"></textarea><br />
-          <button class="btn btn-default"  ng-model="story" ng-click="submit(story)"> {{buttonText}} </button>
-        </form>
+    <div class="container-fluid">
+      <div class="row" id="contact">
+        <div class="col-md-2 col-md-offset-2">
+          <address>
+            <strong>Address</strong><br/>
+            38 Park Street <br/>
+            Bristol BS1 5JG<br/>
+          </address>
+        </div>
+
+        <div class="col-md-2">
+          <address>
+            <strong>Phone</strong><br/>
+            07944223916
+
+          </address>
+        </div>
+        <div class="col-md-2">
+          <address>
+            <strong>Email</strong><br/>
+            <a href="mailto:#">gavin-parker@live.com</a><br/>
+            <a href="mailto:#">gp14958"my.bristol.ac.uk</a>
+
+          </address>
+        </div>
+        <div class="col-md-2">
+          <address>
+            <strong>Details</strong><br/>
+            <a href="https://github.com/gavin-parker">Github</a><br/>
+            <a href="https://uk.linkedin.com/in/gavin-parker-0a363a8b">Linkedin</a><br/>
+
+          </address>
+        </div>
       </div>
     </div>
 
 
-  </div>
-
-  <!--
-  <div class="title-carousel">
-
-  <uib-carousel interval="2000" no-wrap="false" >
-  <uib-slide ng-repeat="hol in holidays" active="hol.active" class="slide">
-  <span><h1>{{hol.Location}}</h1></span>
-  <img ng-src="{{hol.Images[0]}}" style="margin:auto;" class="carousel-img"/>
-</uib-slide>
-</uib-carousel>
-
-</div>
--->
-
-
-</div>
-</body>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
 </html>

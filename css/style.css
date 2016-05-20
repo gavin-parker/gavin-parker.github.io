@@ -1,0 +1,27 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #FAFAFA;
+
+  }
+.article{
+}
+
+
+#contact{
+  background-color: #616161;
+  color: white;
+  padding:5px;
+
+}
+#navigation{
+line-height: 150%;
+}
+#content{
+background-color: white;
+padding-bottom: 10px;
+}
+#title{
+  background-color: #03A9F4;
+  text-align: center;
+  color: white;
+}
