@@ -6,4 +6,9 @@
   padding:5px;
 
 }
+.address{
+  text-align:center;
+  
+}
+a i {  text-decoration: none; color: black; font-size: 50; }
 
