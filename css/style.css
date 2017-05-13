@@ -12,3 +12,7 @@
 }
 a i {  text-decoration: none; color: black; font-size: 50; }
 
+ h1.ui.center.header {
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
